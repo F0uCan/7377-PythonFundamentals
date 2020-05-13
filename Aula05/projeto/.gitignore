@@ -1,0 +1,8 @@
+## ignorar um diretório no git
+__pycache__
+env
+
+## app2.py
+app2.py
+
+
