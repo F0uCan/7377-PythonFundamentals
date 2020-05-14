@@ -1,0 +1,4 @@
+matricula   nome    nota1   nota2   nota3
+111222333   jose    5.5 6.5 8.0
+222333444   felipe  6.5 8.2 3.4
+333444555   letícia 6.0 8   9
