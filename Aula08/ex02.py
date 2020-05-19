@@ -49,7 +49,6 @@ class Corrida:
         self.numero_voltas = 20
         self.tamanho = 2000
         self.num_pits = 2
-        self.grid_final = []
         self.grid_inicial = []
         self.largada = False
         self.bandeirada = False
@@ -68,20 +67,10 @@ class Corrida:
             self.bandeirada = True
     
     def verificarGanhador(self, lista_carros):
-        km = 0
-        
-        for carro in lista_carros:
-            if carro.km > km:
-                km = carro.km
-        
-        ## km do vencedor
-        for carro in lista_carros:
-            if carro.km == km:
-                print('O carro' , carro.marca,' foi o vencedor')
-                break
+        lista_carros.sort(key=lambda carro:carro.km, reverse=True)
+        print('O carro', lista_carros[0].marca, 'foi o vencedor')
         
         
-                
     def principal(self):
         ## criei os carros
         c1 = Carro(0, 'Amarelo','Lotus',1976, 1.5)
@@ -94,15 +83,19 @@ class Corrida:
         
         while self.bandeirada == False:
             
+            ## Aleatorização
             for carro in self.grid_inicial:
                 if carro.velocidade >= 250:
                     carro.frear(randint(40,50))
                 else:
                     carro.acelerar(randint(50,60))
             
+            
+            
+            ## Parciais das voltas
             print('Parciais - Volta')
             for carro in self.grid_inicial:
-                print(carro.marca, carro.km)
+                print(carro.marca, f'{carro.km:.2f}')
             
             print('---------------------')
         
@@ -113,12 +106,11 @@ class Corrida:
             if self.numero_voltas == 0:
                 self.bandeirada = True
                 
-        ## Avaliar quem ganhou?
+        ## Quem ganhou?
         self.verificarGanhador(self.grid_inicial)
 
 
 if __name__ == '__main__':
-    corrida = Corrida()
-    corrida.principal()
+    Corrida().principal()
     
     
